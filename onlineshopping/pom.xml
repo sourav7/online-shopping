@@ -10,6 +10,7 @@
 
 	<properties>
 		<javaee.version>7.0</javaee.version>
+		<spring.version>4.3.6.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -19,6 +20,20 @@
 			<artifactId>javaee-api</artifactId>
 			<version>${javaee.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- SPRING Dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- JSTL API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 		<!-- JUNIT API -->
@@ -31,7 +46,7 @@
 	</dependencies>
 	<build>
 		<plugins>
-		<!-- Update to latest version of JAVA -->
+			<!-- Update to latest version of JAVA -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
