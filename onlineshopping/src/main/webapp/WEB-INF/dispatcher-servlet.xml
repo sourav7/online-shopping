@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<context:component-scan base-package="org.codemaster.controller"></context:component-scan>
-	<context:component-scan base-package="org.codemaster.shoppingbackend.dao.impl"></context:component-scan>
+	<context:component-scan base-package="org.codemaster.shoppingbackend"></context:component-scan>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
