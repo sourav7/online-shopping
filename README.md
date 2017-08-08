@@ -1,2 +1,2 @@
 # online-shopping
-This is a personal training project. This can be found on Khozema Nullwala's github account.
+This is a personal training project. This can be found on github account of Khozema Nullwala Sir.
