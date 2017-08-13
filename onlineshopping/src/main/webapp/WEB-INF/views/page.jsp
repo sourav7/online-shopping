@@ -4,8 +4,8 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath }" />
 
-<spring:url var="js" value="/static/js"></spring:url>
 <spring:url var="css" value="/static/css"></spring:url>
+<spring:url var="js" value="/static/js"></spring:url>
 <spring:url var="images" value="/static/images"></spring:url>
 
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
 <link href="${css }/dataTables.bootstrap.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="${css}/myapp.css" rel="stylesheet" type="text/css">
+<link href="${css}/myapp.css" rel="stylesheet">
 
 </head>
 
@@ -69,6 +69,11 @@
 			<!-- Load only when clickShowProduct -->
 			<c:if test="${userClickShowProduct == true }">
 				<%@include file="singleProduct.jsp"%>
+			</c:if>
+			
+			<!-- Load only when click manage products -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
 			</c:if>
 			
 			

@@ -16,6 +16,7 @@ body {
 .slide-image {
 	width: 100%;
 }
+
 .carousel-holder {
 	margin-bottom: 30px;
 }
@@ -73,12 +74,16 @@ custom styling
 	bottom: 15px;
 	height: 60px;
 }
+
 .customDataTableImg {
 	border: 1px solid #ddd;
-    border-radius: 50%;
-    padding: 5px;
+	border-radius: 50%;
+	padding: 5px;
 	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-	
 	width: 100px;
 	height: 100px;
+}
+
+.help-block {
+	color: red;
 }

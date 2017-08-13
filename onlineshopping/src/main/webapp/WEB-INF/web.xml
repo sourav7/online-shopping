@@ -11,10 +11,10 @@
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<!-- For throwing exception -->
-		<init-param>
+	 	<init-param>
 			<param-name>throwExceptionIfNoHandlerFound</param-name>
 			<param-value>true</param-value>
-		</init-param>
+		</init-param> 
 	</servlet>
 
 	<!-- Map all requests to the DispatcherServlet for handling -->

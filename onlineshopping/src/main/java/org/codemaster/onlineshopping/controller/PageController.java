@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class PageController {
+public class PageController{
 	
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 	
