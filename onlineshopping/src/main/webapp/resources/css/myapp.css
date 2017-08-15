@@ -85,5 +85,11 @@ custom styling
 }
 
 .help-block {
-	color: red;
+	color: white;
+}
+/*
+Custom styling for Image upload box
+*/
+.fileInputBox {
+	width: 50%;
 }

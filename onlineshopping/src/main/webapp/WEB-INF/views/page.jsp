@@ -22,10 +22,8 @@
 <title>Online Shopping - ${title }</title>
 
 <script type="text/javascript">
-
 	window.menu = '${title}';
 	window.contextRoot = '${contextRoot}';
-	
 </script>
 
 <!-- Bootstrap Core CSS -->
@@ -42,7 +40,7 @@
 
 </head>
 
-<body>
+<body id="masterBody">
 	<div class="wrapper">
 		<!-- Navigation -->
 		<%@include file="./shared/navbar.jsp"%>
@@ -62,21 +60,22 @@
 				<%@include file="contact.jsp"%>
 			</c:if>
 			<!-- Load only when click all or category products -->
-			<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true}">
+			<c:if
+				test="${userClickAllProducts == true or userClickCategoryProducts == true}">
 				<%@include file="listProducts.jsp"%>
 			</c:if>
-			
+
 			<!-- Load only when clickShowProduct -->
 			<c:if test="${userClickShowProduct == true }">
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
-			
+
 			<!-- Load only when click manage products -->
 			<c:if test="${userClickManageProducts == true}">
 				<%@include file="manageProducts.jsp"%>
 			</c:if>
-			
-			
+
+
 		</div>
 		<!-- /.container -->
 
@@ -89,17 +88,18 @@
 
 		<!-- Bootstrap Core JavaScript -->
 		<script src="${js }/bootstrap.min.js"></script>
-		
+
 		<!-- jQuery datatable plugin. THis order is important -->
 		<!-- Should Come after jquery.js file -->
 		<script src="${js}/jquery.dataTables.js"></script>
-		
+
 		<!-- Bootstrap Datatable Script -->
 		<!-- Order is IMPORTANT -->
 		<script src="${js}/dataTables.bootstrap.js"></script>
-		
+
 		<!-- Self Coded javascript -->
 		<script src="${js }/myapp.js"></script>
+		<script src="${js }/transition.js"></script>
 	</div>
 </body>
 

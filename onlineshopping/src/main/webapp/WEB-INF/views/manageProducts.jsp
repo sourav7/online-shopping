@@ -1,7 +1,24 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+
 <div class="container">
 
 	<div class="row">
+
+
+
+		<c:if test="${not empty message }">
+			<div class="col-xs-12">
+				<div class="alert alert-success alert-dismissible">
+
+					<button id="closeManageAlert" type="button" onclose=""
+						class="close" data-dismiss="alert">&times;</button>
+					${message }
+				</div>
+			</div>
+		</c:if>
+
+
+
 
 		<div class="col-md-offset-2 col-md-8">
 			<div class="panel panel-primary">
@@ -16,7 +33,9 @@
 					<!-- FORM Elements -->
 
 					<sf:form class="form-horizontal" modelAttribute="product"
-						action="#">
+						action="${contextRoot }/manage/products" method="post"
+						enctype="multipart/form-data">
+
 
 						<div class="form-group">
 
@@ -26,7 +45,7 @@
 
 								<sf:input type="text" path="name" id="name"
 									placeholder="Product Name" class="form-control" />
-								<em class="help-block">Please Enter Product Name !</em>
+								<sf:errors path="name" cssClass="help-block" element="em"></sf:errors>
 
 							</div>
 
@@ -40,7 +59,7 @@
 
 								<sf:input type="text" path="brand" id="brand"
 									placeholder="Brand Name" class="form-control" />
-								<em class="help-block">Please Enter Brand Name !</em>
+								<sf:errors path="brand" cssClass="help-block" element="em"></sf:errors>
 
 							</div>
 
@@ -55,7 +74,7 @@
 
 								<sf:textarea rows="4" path="description" id="description"
 									placeholder="Enter Product Description" class="form-control" />
-
+								<sf:errors path="description" cssClass="help-block" element="em"></sf:errors>
 							</div>
 
 						</div>
@@ -68,7 +87,7 @@
 
 								<sf:input type="text" path="unitPrice" id="unitPrice"
 									placeholder="Unit Price" class="form-control" />
-
+								<sf:errors path="unitPrice" cssClass="help-block" element="em"></sf:errors>
 							</div>
 
 						</div>
@@ -86,6 +105,21 @@
 							</div>
 
 						</div>
+
+						<!-- File element for Image -->
+						<div class="form-group">
+
+							<label class="control-label col-md-4" for="brand">Select
+								an Image : </label>
+							<div class="col-md-8">
+
+								<sf:input type="file" path="file" id="file" class="form-control fileInputBox" />
+
+							</div>
+
+						</div>
+
+
 
 						<div class="form-group">
 
