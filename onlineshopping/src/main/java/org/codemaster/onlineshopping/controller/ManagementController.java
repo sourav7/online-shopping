@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.codemaster.onlineshopping.util.FileUploadUtility;
+import org.codemaster.onlineshopping.validator.ProductValidator;
 import org.codemaster.shoppingbackend.dao.CategoryDAO;
 import org.codemaster.shoppingbackend.dao.ProductDAO;
 import org.codemaster.shoppingbackend.dto.Category;
@@ -63,7 +64,9 @@ public class ManagementController {
 	@RequestMapping(value = { "/products" }, method = RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
-
+		
+		new ProductValidator().validate(mProduct, results);
+		
 		// check if there are any errors
 		if (results.hasErrors()) {
 			model.addAttribute("userClickManageProducts", true);
