@@ -43,6 +43,11 @@ $(function() {
 		$table
 				.DataTable({
 
+					 order: [[1,"asc"],[ 2, "asc" ],[3,"asc"]],
+					 //define types with column index for sorting
+					 columnDefs: [
+					       { type: 'currency', targets: 3 }
+					     ],
 					lengthMenu : [
 							[ 3, 5, 10, -1 ],
 							[ '3 records', '5 records', '10 records',
@@ -78,9 +83,11 @@ $(function() {
 							},
 							{
 								data : 'unitPrice',
+								bSortable : true,
 								mRender : function(data, type, row) {
-									return '&#2547; ' + data;
-								}
+									//Doller sign is preventing sort 
+									return  ' &#2547; ' + data; //'&#2547; ' + 
+							}
 
 							},
 							{
@@ -126,35 +133,38 @@ $(function() {
 	// reference transition.js
 
 	// ---------------------------------------
-	
-	$('.switch input[type="checkbox"]').on('change',function() {
-						
-						//alert('entering function');
+
+	$('.switch input[type="checkbox"]')
+			.on(
+					'change',
+					function() {
+
+						// alert('entering function');
 						var checkbox = $(this);
-						// check if the checkbox is checked returns true or false
+						// check if the checkbox is checked returns true or
+						// false
 						var checked = checkbox.prop('checked');
 						var dMsg = (checked) ? 'You want to activate the product?'
 								: 'You want to deactivate the product?';
 						var value = checkbox.prop('value');
-						
 
 						bootbox
 								.confirm({
 									size : 'medium',
 									title : 'Product Activation & Deactivation',
 									message : dMsg,
+
 									callback : function(confirmed) {
 										if (confirmed) {
-											
-											bootbox.alert(
-													{
-														size : 'big',
+
+											bootbox
+													.alert({
+														size : 'medium',
 														title : 'Information',
 														message : 'You are going to perform operation on product'
 																+ value
-													}
-													);
-											
+													});
+
 										} else {
 											checkbox.prop('checked', !checked);
 										}

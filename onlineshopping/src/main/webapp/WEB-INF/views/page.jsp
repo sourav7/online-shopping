@@ -102,6 +102,7 @@
 		 
 		<!-- Self Coded javascript -->
 		<script src="${js }/myapp.js"></script>
+		<script src="${js }/currency.js"></script>
 		<script src="${js }/transition.js"></script>
 	</div>
 </body>
