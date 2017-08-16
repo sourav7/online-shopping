@@ -2,8 +2,10 @@ package org.codemaster.onlineshopping.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.codemaster.onlineshopping.util.FileUploadUtility;
 import org.codemaster.shoppingbackend.dao.CategoryDAO;
 import org.codemaster.shoppingbackend.dao.ProductDAO;
 import org.codemaster.shoppingbackend.dto.Category;
@@ -29,7 +31,7 @@ public class ManagementController {
 
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ManagementController.class);
 
 	@RequestMapping(value = { "/products" }, method = RequestMethod.GET)
@@ -57,22 +59,26 @@ public class ManagementController {
 	}
 
 	// handling product submission
-	//Binding result should come after modelattribute and not after Model
+	// Binding result should come after modelattribute and not after Model
 	@RequestMapping(value = { "/products" }, method = RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model) {
+	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results,
+			Model model, HttpServletRequest request) {
 
-		//check if there are any errors
-		if(results.hasErrors()){
+		// check if there are any errors
+		if (results.hasErrors()) {
 			model.addAttribute("userClickManageProducts", true);
 			model.addAttribute("title", "Manage Products");
 			model.addAttribute("message", "Validation failed for product submission.");
-			
+
 			return "page";
 		}
-		
-		
+
 		logger.info(mProduct.toString());
 		this.productDAO.add(mProduct);
+
+		if (!mProduct.getFile().getOriginalFilename().equals("")) {
+			FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
+		}
 
 		return "redirect:/manage/products?operation=product";
 	}

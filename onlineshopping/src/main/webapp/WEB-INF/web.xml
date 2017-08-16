@@ -11,10 +11,19 @@
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<!-- For throwing exception -->
-	 	<init-param>
+		<init-param>
+			<!-- Do not change this name. Spring will search for this -->
 			<param-name>throwExceptionIfNoHandlerFound</param-name>
 			<param-value>true</param-value>
-		</init-param> 
+		</init-param>
+		
+		 <multipart-config>
+			<!--  1024 * 1024 * 2 = 2097152 -->
+			<max-file-size>2097152</max-file-size>
+			<max-request-size>4194304</max-request-size>
+			<file-size-threshold>1048576</file-size-threshold>
+		</multipart-config> 
+
 	</servlet>
 
 	<!-- Map all requests to the DispatcherServlet for handling -->
