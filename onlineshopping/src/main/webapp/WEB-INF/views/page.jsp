@@ -96,7 +96,10 @@
 		<!-- Bootstrap Datatable Script -->
 		<!-- Order is IMPORTANT -->
 		<script src="${js}/dataTables.bootstrap.js"></script>
-
+	
+		<!-- Bootbox -->
+		<script src="${js}/bootbox.min.js"></script>
+		 
 		<!-- Self Coded javascript -->
 		<script src="${js }/myapp.js"></script>
 		<script src="${js }/transition.js"></script>

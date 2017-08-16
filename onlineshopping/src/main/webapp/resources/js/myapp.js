@@ -2,9 +2,9 @@ $(function() {
 	// solving active menu problem
 	switch (menu) {
 	case 'About Us':
-		//make class active
+		// make class active
 		$('#about').addClass('active');
-		//flash the menu clicked
+		// flash the menu clicked
 		$('#about').fadeOut(500).fadeIn(500);
 		break;
 	case 'Contact Us':
@@ -124,5 +124,43 @@ $(function() {
 
 	// dismissing the alert after 3 seconds
 	// reference transition.js
+
+	// ---------------------------------------
+	
+	$('.switch input[type="checkbox"]').on('change',function() {
+						
+						//alert('entering function');
+						var checkbox = $(this);
+						// check if the checkbox is checked returns true or false
+						var checked = checkbox.prop('checked');
+						var dMsg = (checked) ? 'You want to activate the product?'
+								: 'You want to deactivate the product?';
+						var value = checkbox.prop('value');
+						
+
+						bootbox
+								.confirm({
+									size : 'medium',
+									title : 'Product Activation & Deactivation',
+									message : dMsg,
+									callback : function(confirmed) {
+										if (confirmed) {
+											
+											bootbox.alert(
+													{
+														size : 'big',
+														title : 'Information',
+														message : 'You are going to perform operation on product'
+																+ value
+													}
+													);
+											
+										} else {
+											checkbox.prop('checked', !checked);
+										}
+									}
+								});
+
+					});
 
 });
