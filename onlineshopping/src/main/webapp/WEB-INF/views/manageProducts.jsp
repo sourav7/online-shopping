@@ -170,7 +170,8 @@
 			<hr />
 		</div>
 
-		<div class="col-xs-12">
+		
+		<div class="col-xs-12" >
 			<div style="overflow: auto">
 				<!-- Products table for admin -->
 				<table id="adminProductsTable"
@@ -180,6 +181,7 @@
 							<th>Id</th>
 							<th>&#160;</th>
 							<th>Name</th>
+							<th>Brand</th>
 							<th>Quantity</th>
 							<th>Unit Price</th>
 							<th>Active</th>
@@ -187,13 +189,14 @@
 						</tr>
 					</thead>
 
-					<tbody>
+					<%-- <tbody>
 						<tr>
 							<td>4</td>
 							<td><img class="adminDataTableImg"
 								src="${contextRoot }/static/images/PRDMNO123PQRX.jpg"
 								alt="Macbook Pro"></td>
 							<td>Macbook Pro</td>
+							<td>apple</td>
 							<td>3</td>
 							<td>&#2547; 54000.00/-</td>
 							<td>
@@ -221,6 +224,7 @@
 								src="${contextRoot }/static/images/PRDMNO123PQRX.jpg"
 								alt="Macbook Pro"></td>
 							<td>Macbook Pro</td>
+							<td>apple</td>
 							<td>3</td>
 							<td>&#2547; 54000.00/-</td>
 							<td>
@@ -242,13 +246,14 @@
 						
 						
 						
-					</tbody>
+					</tbody> --%>
 
 					<tfoot>
 						<tr>
 							<th>Id</th>
 							<th>&#160;</th>
 							<th>Name</th>
+							<th>Brand</th>
 							<th>Quantity</th>
 							<th>Unit Price</th>
 							<th>Active</th>
@@ -259,6 +264,9 @@
 				</table>
 
 			</div>
+			
+			
+			<!-- -------------- -->
 		</div>
 	</div>
 

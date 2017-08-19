@@ -43,11 +43,12 @@ $(function() {
 		$table
 				.DataTable({
 
-					 order: [[1,"asc"],[ 2, "asc" ],[3,"asc"]],
-					 //define types with column index for sorting
-					 columnDefs: [
-					       { type: 'currency', targets: 3 }
-					     ],
+					order : [ [ 1, "asc" ], [ 2, "asc" ], [ 3, "asc" ] ],
+					// define types with column index for sorting
+					columnDefs : [ {
+						type : 'currency',
+						targets : 3
+					} ],
 					lengthMenu : [
 							[ 3, 5, 10, -1 ],
 							[ '3 records', '5 records', '10 records',
@@ -85,9 +86,9 @@ $(function() {
 								data : 'unitPrice',
 								bSortable : true,
 								mRender : function(data, type, row) {
-									//Doller sign is preventing sort 
-									return  ' &#2547; ' + data; //'&#2547; ' + 
-							}
+									// Doller sign is preventing sort
+									return ' &#2547; ' + data; // '&#2547; ' +
+								}
 
 							},
 							{
@@ -134,43 +135,183 @@ $(function() {
 
 	// ---------------------------------------
 
-	$('.switch input[type="checkbox"]')
-			.on(
-					'change',
-					function() {
+	// -------------------------------
+	// data table for admin
+	// --------------------------------
 
-						// alert('entering function');
-						var checkbox = $(this);
-						// check if the checkbox is checked returns true or
-						// false
-						var checked = checkbox.prop('checked');
-						var dMsg = (checked) ? 'You want to activate the product?'
-								: 'You want to deactivate the product?';
-						var value = checkbox.prop('value');
+	var $adminProductsTable = $('#adminProductsTable');
 
-						bootbox
-								.confirm({
-									size : 'medium',
-									title : 'Product Activation & Deactivation',
-									message : dMsg,
+	// execute the below code only where we have this table
+	if ($adminProductsTable.length) {
+		// console.log('Inside the table !');
 
-									callback : function(confirmed) {
-										if (confirmed) {
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
+
+		$adminProductsTable
+				.DataTable({
+
+					// order : [ [ 1, "asc" ], [ 2, "asc" ], [ 3, "asc"
+					// ] ],
+					// define types with column index for sorting
+					// columnDefs : [ {
+					// type : 'currency',
+					// targets : 3
+					// } ],
+					lengthMenu : [
+							[ 10, 30, 50, -1 ],
+							[ '10 records', '30 records', '50 records',
+									'All records' ] ],
+					pageLength : 30,
+					// data: products
+					ajax : {
+
+						url : jsonUrl,
+						dataSrc : ''
+
+					},
+					columns : [
+
+							{
+								data : 'id'
+							},
+							{
+								data : 'code',
+								mRender : function(data, type, row) {
+									// css class customDataTableImg is
+									// not
+									// working in chrome
+									// for this i added custom css
+									// property
+									// class = "customDataTableImg"
+									var cssProp = 'style="border: 1px solid #ddd; border-radius: 50%; padding: 5px;	box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);	width: 100px; height: 100px;"';
+									return '<img class="adminDataTableImg" src="'
+											+ window.contextRoot
+											+ '/static/images/'
+											+ data
+											+ '.jpg" />';
+
+								}
+							},
+							{
+								data : 'name'
+
+							},
+							{
+								data : 'brand'
+
+							},
+
+							{
+								data : 'quantity',
+								mRender : function(data, type, row) {
+									if (data < 1) {
+										return '<span style="color:red">Out of Stock</span>';
+									}
+									return data;
+								}
+
+							},
+							{
+								data : 'unitPrice',
+								bSortable : true,
+								mRender : function(data, type, row) {
+									// Doller sign is preventing sort
+									return ' &#2547; ' + data; // '&#2547;
+									// ' +
+								}
+
+							},
+							{
+								data : 'active',
+								bSortable : false,
+								mRender : function(data, type, row) {
+
+									var str = '';
+									str += '<label class="switch">';
+									if (data)// if active
+
+										str += '<input type="checkbox" checked="checked" value="'
+												+ row.id + '" />';
+									else
+										str += '<input type="checkbox" value="'
+												+ row.id + '" />';
+									str += '<div class="slider" ></div>	</label>';
+
+									return str;
+								}
+							},
+							{
+								data : 'id',
+								bSortable : false,
+								mRender : function(data, type, row) {
+									var str = '';
+
+									str += '	<a href="${contextRoot }/manage/'
+											+ data
+											+ '/product" class="btn btn-warning" >';
+									str += '<span class="glyphicon glyphicon-pencil"></span></a>';
+
+									return str;
+								}
+							} ],
+					initComplete : function() {
+
+						
+						var api = this.api();
+
+						api
+								.$('.switch input[type="checkbox"]')
+								.on(
+										'change',
+										function() {
+
+											// alert('entering
+											// function');
+											var checkbox = $(this);
+											// check if the checkbox is
+											// checked
+											// returns true or
+											// false
+											var checked = checkbox
+													.prop('checked');
+											var dMsg = (checked) ? 'You want to activate the product?'
+													: 'You want to deactivate the product?';
+											var value = checkbox.prop('value');
 
 											bootbox
-													.alert({
+													.confirm({
 														size : 'medium',
-														title : 'Information',
-														message : 'You are going to perform operation on product'
-																+ value
+														title : 'Product Activation & Deactivation',
+														message : dMsg,
+
+														callback : function(
+																confirmed) {
+															if (confirmed) {
+
+																bootbox
+																		.alert({
+																			size : 'medium',
+																			title : 'Information',
+																			message : 'You are going to perform operation on product'
+																					+ value
+																		});
+
+															} else {
+																checkbox
+																		.prop(
+																				'checked',
+																				!checked);
+															}
+														}
 													});
 
-										} else {
-											checkbox.prop('checked', !checked);
-										}
-									}
-								});
+										});
+					}
 
-					});
+				});
+
+	}
+
+	// ---------------------------------
 
 });
