@@ -169,8 +169,7 @@
 			<h3>Available Product</h3>
 			<hr />
 		</div>
-
-		
+	
 		<div class="col-xs-12" >
 			<div style="overflow: auto">
 				<!-- Products table for admin -->

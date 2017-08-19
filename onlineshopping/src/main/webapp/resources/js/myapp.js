@@ -255,8 +255,7 @@ $(function() {
 								}
 							} ],
 					initComplete : function() {
-
-						
+			
 						var api = this.api();
 
 						api
