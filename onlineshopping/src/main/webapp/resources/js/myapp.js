@@ -149,7 +149,6 @@ $(function() {
 
 		$adminProductsTable
 				.DataTable({
-
 					// order : [ [ 1, "asc" ], [ 2, "asc" ], [ 3, "asc"
 					// ] ],
 					// define types with column index for sorting
@@ -255,7 +254,7 @@ $(function() {
 								}
 							} ],
 					initComplete : function() {
-			
+
 						var api = this.api();
 
 						api
@@ -312,5 +311,6 @@ $(function() {
 	}
 
 	// ---------------------------------
+
 
 });
