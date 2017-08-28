@@ -18,9 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -59,14 +61,28 @@ public class ManagementController {
 		return mv;
 	}
 
+	@RequestMapping(value = { "/product/{id}/activation" })
+	@ResponseBody
+	public String handleProductActivation(@PathVariable("id") int id) {
+		Product product = productDAO.get(id);
+		boolean isActive = product.isActive();
+
+		product.setActive(!product.isActive());
+
+		productDAO.update(product);
+
+		return (isActive) ? "You have successfully deactivated the product with id : " + id
+				: "You have successfully activated the product with id : " + id;
+	}
+
 	// handling product submission
 	// Binding result should come after modelattribute and not after Model
 	@RequestMapping(value = { "/products" }, method = RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
-		
+
 		new ProductValidator().validate(mProduct, results);
-		
+
 		// check if there are any errors
 		if (results.hasErrors()) {
 			model.addAttribute("userClickManageProducts", true);

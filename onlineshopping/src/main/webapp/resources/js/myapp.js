@@ -135,9 +135,48 @@ $(function() {
 
 	// ---------------------------------------
 
-	// -------------------------------
+	$('.switch input[type="checkbox"]')
+			.on(
+					'change',
+					function() {
+
+						// alert('entering function');
+						var checkbox = $(this);
+						// check if the checkbox is checked returns true or
+						// false
+						var checked = checkbox.prop('checked');
+						var dMsg = (checked) ? 'You want to activate the product?'
+								: 'You want to deactivate the product?';
+						var value = checkbox.prop('value');
+
+						bootbox
+								.confirm({
+									size : 'medium',
+									title : 'Product Activation & Deactivation',
+									message : dMsg,
+
+									callback : function(confirmed) {
+										if (confirmed) {
+
+											bootbox
+													.alert({
+														size : 'medium',
+														title : 'Information',
+														message : 'You are going to perform operation on product'
+																+ value
+													});
+
+										} else {
+											checkbox.prop('checked', !checked);
+										}
+									}
+								});
+
+					});
+
+	// -----------------------
 	// data table for admin
-	// --------------------------------
+	// ---------------------------
 
 	var $adminProductsTable = $('#adminProductsTable');
 
@@ -263,8 +302,7 @@ $(function() {
 										'change',
 										function() {
 
-											// alert('entering
-											// function');
+											// alert('entering function');
 											var checkbox = $(this);
 											// check if the checkbox is
 											// checked
@@ -284,15 +322,25 @@ $(function() {
 
 														callback : function(
 																confirmed) {
+
 															if (confirmed) {
 
-																bootbox
-																		.alert({
-																			size : 'medium',
-																			title : 'Information',
-																			message : 'You are going to perform operation on product'
-																					+ value
-																		});
+																var activationUrl = window.contextRoot
+																		+ '/manage/product/'
+																		+ value
+																		+ '/activation';
+																$
+																		.post(
+																				activationUrl,
+																				function(
+																						data) {
+																					bootbox
+																							.alert({
+																								size : 'medium',
+																								title : 'Info',
+																								message : data
+																							});
+																				});
 
 															} else {
 																checkbox
@@ -310,7 +358,5 @@ $(function() {
 
 	}
 
-	// ---------------------------------
-
-
+	// --------------------------
 });
