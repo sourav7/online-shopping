@@ -1,10 +1,9 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
 
 	<div class="row">
-
-
 
 		<c:if test="${not empty message }">
 			<div class="col-xs-12">
@@ -72,7 +71,8 @@
 
 								<sf:textarea rows="4" path="description" id="description"
 									placeholder="Enter Product Description" class="form-control" />
-								<sf:errors path="description" cssClass="help-block errHighlight" element="em"></sf:errors>
+								<sf:errors path="description" cssClass="help-block errHighlight"
+									element="em"></sf:errors>
 							</div>
 
 						</div>
@@ -85,7 +85,8 @@
 
 								<sf:input type="text" path="unitPrice" id="unitPrice"
 									placeholder="Unit Price" class="form-control" />
-								<sf:errors path="unitPrice" cssClass="help-block errHighlight" element="em"></sf:errors>
+								<sf:errors path="unitPrice" cssClass="help-block errHighlight"
+									element="em"></sf:errors>
 							</div>
 
 						</div>
@@ -113,7 +114,8 @@
 
 								<sf:input type="file" path="file" id="file"
 									class="form-control fileInputBox" />
-								<sf:errors path="file" cssClass="help-block errHighlight" element="em"></sf:errors>
+								<sf:errors path="file" cssClass="help-block errHighlight"
+									element="em"></sf:errors>
 							</div>
 
 						</div>
@@ -134,8 +136,15 @@
 									path="categoryId" items="${categories}" itemLabel="name"
 									itemValue="id">
 								</sf:select>
+								<c:if test="${product.id == 0 }">
+									<div class="text-right">
+										<br />
+										<button type="button" data-toggle="modal"
+											data-target="#myCategoryModal" class="btn btn-warning btn-xs">
+											Add Category</button>
+									</div>
+								</c:if>
 							</div>
-
 						</div>
 
 						<!-- Submit -->
@@ -169,8 +178,8 @@
 			<h3>Available Product</h3>
 			<hr />
 		</div>
-	
-		<div class="col-xs-12" >
+
+		<div class="col-xs-12">
 			<div style="overflow: auto">
 				<!-- Products table for admin -->
 				<table id="adminProductsTable"
@@ -263,10 +272,59 @@
 				</table>
 
 			</div>
-			
-			
+
+
 			<!-- -------------- -->
 		</div>
 	</div>
 
+
+	<div class="modal fade" id="myCategoryModal" role="dialog"
+		tabindex="-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+					<h4 class="modal-title">Add New Category</h4>
+				</div>
+
+				<div class="modal-body">
+					<!-- Category form -->
+					<sf:form id="categoryForm" modelAttribute="category"
+						action="${contextRoot }/manage/category" method="post"
+						class="form-horizontal">
+
+						<div class="form-group">
+							<label for="category_name" class="control-label col-md-4">Category
+								Name</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="name" id="category_name"
+									class="form-control" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="category_description" class="control-label col-md-4">Category
+								Description</label>
+							<div class="col-md-8">
+								<sf:textarea cols="" rows="5" path="description"
+									id="category_description" class="form-control" />
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<input type="submit" value="Add Category"
+									class="btn btn-primary">
+							</div>
+						</div>
+					</sf:form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
