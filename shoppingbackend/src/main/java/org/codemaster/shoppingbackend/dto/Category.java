@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Category {
@@ -15,8 +18,10 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "name")
+	@Size(min = 2)
 	private String name;
 	@Column(name = "description")
+	@NotBlank
 	private String description;
 	@Column(name = "image_url")
 	private String imageURL;
