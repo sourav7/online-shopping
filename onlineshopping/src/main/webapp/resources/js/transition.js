@@ -1,12 +1,19 @@
 $(function() {
 
+	var $errId = $('.errHighlight');
+	if ($errId.length) {
+		$errId.effect("shake", {
+			times : 5
+		}, 30000);
+	}
 	// fadein the form
 	var $panel = $('.panel');
 
 	if ($panel.length && !$('.alert').length) {
 
-		 $panel.hide(0).delay(500).slideDown();
-
+		$panel.hide(0).delay(500).slideDown();
+		// $panel.hide(0).show( "explode", {pieces:4}, 2000 );
+		// $panel.effect( "bounce", {times:7}, 1500 );
 		// setTimeout(function() {
 		// $panel.fadeIn('slow');
 		// }, 2000);
@@ -29,8 +36,8 @@ $(function() {
 		}, 2000);
 
 	}
-	
-	//If manually closed show the form
+
+	// If manually closed show the form
 	$("#closeManageAlert").click(function() {
 		$panel.show();
 	});

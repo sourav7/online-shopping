@@ -104,6 +104,7 @@
 		<script src="${js }/myapp.js"></script>
 		<script src="${js }/currency.js"></script>
 		<script src="${js }/transition.js"></script>
+		<script src="${js }/jquery-ui.min.js"></script>
 		
 	</div>
 </body>

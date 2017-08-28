@@ -72,7 +72,7 @@
 
 								<sf:textarea rows="4" path="description" id="description"
 									placeholder="Enter Product Description" class="form-control" />
-								<sf:errors path="description" cssClass="help-block" element="em"></sf:errors>
+								<sf:errors path="description" cssClass="help-block errHighlight" element="em"></sf:errors>
 							</div>
 
 						</div>
@@ -85,7 +85,7 @@
 
 								<sf:input type="text" path="unitPrice" id="unitPrice"
 									placeholder="Unit Price" class="form-control" />
-								<sf:errors path="unitPrice" cssClass="help-block" element="em"></sf:errors>
+								<sf:errors path="unitPrice" cssClass="help-block errHighlight" element="em"></sf:errors>
 							</div>
 
 						</div>
@@ -113,7 +113,7 @@
 
 								<sf:input type="file" path="file" id="file"
 									class="form-control fileInputBox" />
-								<sf:errors path="file" cssClass="help-block" element="em"></sf:errors>
+								<sf:errors path="file" cssClass="help-block errHighlight" element="em"></sf:errors>
 							</div>
 
 						</div>

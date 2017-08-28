@@ -75,13 +75,35 @@ public class ManagementController {
 				: "You have successfully activated the product with id : " + id;
 	}
 
+	@RequestMapping(value = { "/{id}/product" }, method = RequestMethod.GET)
+	public ModelAndView showEditProduct(@PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("page");
+
+		mv.addObject("userClickManageProducts", true);
+		mv.addObject("title", "Manage Products");
+
+		Product nProduct = productDAO.get(id);
+
+		// set few fields
+		mv.addObject("product", nProduct);
+
+		return mv;
+	}
+
 	// handling product submission
 	// Binding result should come after modelattribute and not after Model
 	@RequestMapping(value = { "/products" }, method = RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
 
-		new ProductValidator().validate(mProduct, results);
+		if (mProduct.getId() == 0) {
+			new ProductValidator().validate(mProduct, results);
+		} else {
+			//ensure for a valid file
+			if(!mProduct.getFile().getOriginalFilename().equals("")){
+				new ProductValidator().validate(mProduct, results);
+			}
+		}
 
 		// check if there are any errors
 		if (results.hasErrors()) {
@@ -93,7 +115,11 @@ public class ManagementController {
 		}
 
 		logger.info(mProduct.toString());
-		this.productDAO.add(mProduct);
+		if (mProduct.getId() == 0)
+			this.productDAO.add(mProduct);
+		else {
+			this.productDAO.update(mProduct);
+		}
 
 		if (!mProduct.getFile().getOriginalFilename().equals("")) {
 			FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
