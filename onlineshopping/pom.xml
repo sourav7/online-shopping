@@ -14,6 +14,7 @@
 	</properties>
 
 	<dependencies>
+
 		<!-- Link backend project -->
 		<dependency>
 			<groupId>org.codemaster</groupId>
@@ -46,6 +47,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<!-- Spring WEBFLOW -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.4.5.RELEASE</version>
+		</dependency>
 
 		<!-- JSTL API -->
 		<dependency>
@@ -54,11 +61,11 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- JUNIT API -->
+		<!-- JUNIT version 4.12 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

@@ -43,37 +43,19 @@
 <body id="masterBody">
 	<div class="wrapper">
 		<!-- Navigation -->
-		<%@include file="./shared/navbar.jsp"%>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="${flowExecutionUrl }&_eventId_home">Home</a>
+				</div>
+			</div>
+		</nav>
 
 		<!-- Page Content -->
 		<div class="content">
-			<!-- Loading the home content -->
-			<c:if test="${userClickHome == true }">
-				<%@include file="home.jsp"%>
-			</c:if>
-			<!-- Load only when click about -->
-			<c:if test="${userClickAbout == true }">
-				<%@include file="about.jsp"%>
-			</c:if>
-			<!-- Load only when click contact -->
-			<c:if test="${userClickContact == true }">
-				<%@include file="contact.jsp"%>
-			</c:if>
-			<!-- Load only when click all or category products -->
-			<c:if
-				test="${userClickAllProducts == true or userClickCategoryProducts == true}">
-				<%@include file="listProducts.jsp"%>
-			</c:if>
-
-			<!-- Load only when clickShowProduct -->
-			<c:if test="${userClickShowProduct == true }">
-				<%@include file="singleProduct.jsp"%>
-			</c:if>
-
-			<!-- Load only when click manage products -->
-			<c:if test="${userClickManageProducts == true}">
-				<%@include file="manageProducts.jsp"%>
-			</c:if>
+			<div class="container">
+				<h3>This will be triggered by flow</h3>
+			</div>
 		</div>
 		<!-- /.container -->
 
